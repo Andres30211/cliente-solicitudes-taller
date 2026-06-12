@@ -36,7 +36,7 @@ export class ListSolicitud implements OnInit{
 
   getFileUrlSafe(ruta: string): SafeResourceUrl {
   return this.sanitizer.bypassSecurityTrustResourceUrl(
-    `http://localhost:8080/${ruta}`
+    `https://solicitudes-taller.onrender.com/${ruta}`
   );
 }
 
@@ -97,6 +97,6 @@ export class ListSolicitud implements OnInit{
   }
 
   getFileUrl(ruta: string): string {
-    return `http://localhost:8080/${ruta}`;
+    return `https://solicitudes-taller.onrender.com/${ruta}`;
   }
 }

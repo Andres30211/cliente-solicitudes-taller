@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class FormSolicitud {
 
-  private api = 'https://solicitudes-taller-production.up.railway.app/api/solicitudes/taller/global';
+  private api = 'https://solicitudes-taller.onrender.com/api/solicitudes/taller/global';
   // private api = 'http://localhost:8080/api/solicitudes/taller/global';
 
   public formulario!: FormGroup;

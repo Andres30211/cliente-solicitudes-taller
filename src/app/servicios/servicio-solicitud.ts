@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class ServicioSolicitud {
   
-  private api = 'https://solicitudes-taller-production.up.railway.app/api/solicitudes/taller/global';
-  private apiUser = 'https://solicitudes-taller-production.up.railway.app/api/solicitudes/taller/global';
+  private api = 'https://solicitudes-taller.onrender.com/api/solicitudes/taller/global';
+  private apiUser = 'https://solicitudes-taller.onrender.com/api/usuario/global';
   // private api = 'http://localhost:8080/api/solicitudes/taller/global';
   // private apiUser = 'http://localhost:8080/api/usuario/global';
 
