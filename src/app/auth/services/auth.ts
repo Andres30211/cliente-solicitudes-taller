@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class Auth {
   
-  private api = 'https://solicitudes-taller-production.up.railway.app/api/usuario/global';
+  private api = 'https://solicitudes-taller.onrender.com/api/usuario/global';
   // private api = 'http://localhost:8080/api/usuario/global';
 
   constructor(private http: HttpClient){}
