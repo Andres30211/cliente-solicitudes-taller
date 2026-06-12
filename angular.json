@@ -28,10 +28,7 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
-=======
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
->>>>>>> 26a89ff (Se actualizo el desarrollo con bootstrap y SweetAlert2)
               "src/styles.css"
             ]
           },
