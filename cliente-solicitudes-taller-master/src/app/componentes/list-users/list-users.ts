@@ -11,9 +11,6 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 })
 export class ListUsers {
 
-  // private api = 'https://solicitudes-taller-production.up.railway.app/api/solicitudes/taller/global';
-  private api = 'http://localhost:8080/api/solicitudes/taller/global';
-
   public usuarios: any[] = [];
 
   private platformId = inject(PLATFORM_ID);
