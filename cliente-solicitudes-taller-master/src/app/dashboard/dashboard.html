@@ -1,0 +1,98 @@
+<!-- dashboard.component.html -->
+<form [formGroup]="formulario">
+
+  <div>
+    <label>Cliente</label>
+    <input type="text" formControlName="nombreCliente">
+  </div>
+
+  <div>
+    <label>Producto</label>
+    <input type="text" formControlName="nombreProducto">
+  </div>
+
+  <div>
+    <label>Cantidad</label>
+    <input type="number" formControlName="cantidad">
+  </div>
+
+  <div>
+    <label>Orden Compra PDF</label>
+    <input type="file" (change)="onFileChange($event, 'orden')">
+  </div>
+
+  <div>
+    <label>Plano PDF</label>
+    <input type="file" (change)="onFileChange($event, 'plano')">
+  </div>
+
+  <button type="submit" (click)="guardar()">Guardar</button>
+
+</form>
+<h2>Lista de Solicitudes para {{vendedor.nombre}} </h2>
+<p>Total: {{ solicitudes.length }}</p>
+
+<button (click)="cargarSolicitudes()">
+    cargar Solicitudes
+</button>
+
+<button (click)="cargarUsuarios()">
+    cargar Usuarios
+</button>
+
+<table *ngIf="solicitudes.length > 0">
+
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre Cliente</th>
+      <th>Nombre Producto</th>
+      <th>Cantidad</th>
+      <th>Fecha de Solicitud</th>
+      <th>Estado</th>
+      <th>Orden de Compra</th>
+      <th>Plano</th>
+      <th>Vendedor</th>
+      <th *ngIf="vendedor.rol != 'VENDEDOR'">Cambiar estado</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let u of solicitudes">
+      <td>{{ u.id }}</td>
+      <td>{{ u.nombreCliente }}</td>
+      <td>{{ u.nombreProducto }}</td>
+      <td>{{ u.cantidad }}</td>
+      <td>{{ u.fechaSolicitud | date: 'dd/MM/yyyy hh:mm a' }}</td>
+      <td>{{ u.estadoEnum }}</td>
+      <td> <a [href]="getFileUrl(u.ordenCompraPdf)" target="_blank"> Ver Orden </a> </td>
+      <td><a [href]="getFileUrl(u.planoPdf)" target="_blank"> Ver Orden </a></td>
+      <td>{{ u.usuarioEntidad.nombre }}</td>
+      <td *ngIf="vendedor.rol != 'VENDEDOR'">  <button (click)="entregar(u.id)">Entregar</button></td>
+    </tr>
+  </tbody>
+
+</table>
+
+<table *ngIf="usuarios.length > 0">
+
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let u of usuarios">
+      <td>{{ u.id }}</td>
+      <td>{{ u.nombre }}</td>
+      <td *ngIf="vendedor.rol != 'VENDEDOR'">  <button (click)="editarRol(u.identidad)">Editar rol</button> </td>
+    </tr>
+  </tbody>
+
+</table>
+
+<p *ngIf="solicitudes.length == 0">
+  No hay datos cargados
+</p>

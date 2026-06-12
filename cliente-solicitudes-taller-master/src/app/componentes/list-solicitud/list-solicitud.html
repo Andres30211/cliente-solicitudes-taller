@@ -1,0 +1,81 @@
+@if (this.solicitudes.length > 0) {
+
+    <div class="cards-grid">
+        <div class="sol-card" *ngFor="let u of solicitudes; let i = index" [style.animation-delay]="i * 60 + 'ms'">
+            <div class="card-header">
+                <span class="card-id"># {{ u.id }}</span>
+                <span class="estado-badge" [ngClass]="u.estadoEnum | lowercase">
+                    {{ u.estadoEnum }}
+                </span>
+            </div>
+
+            <div class="cliente-row">
+                <div class="avatar">{{ this.getInitials(u.nombreCliente) }}</div>
+                <div>
+                    <div class="cliente-name">{{ u.nombreCliente }}</div>
+                    <div class="cliente-sub">Vendedor: {{ u.usuarioEntidad.nombre }}</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <span class="meta-label">
+                        <i class="ti ti-box" aria-hidden="true">Producto</i>
+                    </span>
+                    <span class="meta-value">{{ u.nombreProducto }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">
+                        <i class="ti ti-stack-2" aria-hidden="true">Cantidad</i>
+                    </span>
+                    <span class="meta-value">{{ u.cantidad }}</span>
+                </div>
+                <div class="meta-item" style="grid-column: 1 / -1">
+                    <span class="meta-label">
+                        <i class="ti ti-calendar" aria-hidden="true">Fecha solicitud</i>
+                    </span>
+                    <span class="meta-value">{{ u.fechaSolicitud }}</span>
+                </div>
+            </div>
+
+            <div class="card-previews">
+                <div class="preview-block">
+                    <div class="preview-label">
+                        <i class="ti ti-file-text"></i> Orden de compra
+                    </div>
+                    <div class="preview-frame">
+                        <iframe [src]="getFileUrlSafe(u.ordenCompraPdf)" frameborder="0" scrolling="no">
+                        </iframe>
+                        <a [href]="getFileUrl(u.ordenCompraPdf)" target="_blank" class="preview-overlay">
+                            <i class="ti ti-external-link"></i> Abrir
+                        </a>
+                    </div>
+                </div>
+
+                <div class="preview-block">
+                    <div class="preview-label">
+                        <i class="ti ti-blueprint"></i> Plano
+                    </div>
+                    <div class="preview-frame">
+                        <iframe [src]="getFileUrlSafe(u.planoPdf)" frameborder="0" scrolling="no">
+                        </iframe>
+                        <a [href]="getFileUrl(u.planoPdf)" target="_blank" class="preview-overlay">
+                            <i class="ti ti-external-link"></i> Abrir
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button *ngIf="vendedor.rol !== 'VENDEDOR'" class="entregar-btn" (click)="entregar(u)">
+                <i class="ti ti-truck-delivery" aria-hidden="true">Marcar como entregado</i>
+            </button>
+        </div>
+    </div>
+
+}@else {
+<div class="container bg-warning text-center rounded-2 p-4">
+    <h3>NO HAY SOLICITUDES...</h3>
+</div>
+}

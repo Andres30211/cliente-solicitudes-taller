@@ -1,0 +1,72 @@
+<<<<<<< HEAD
+<h2>Iniciar sesión</h2>
+
+<form (ngSubmit)="ingresar()">
+
+  <input
+    type="text"
+    placeholder="Usuario"
+    [(ngModel)]="identidad"
+    name="username"
+  >
+
+  <input
+    type="password"
+    placeholder="Password"
+    [(ngModel)]="password"
+    name="password"
+  >
+
+  <button type="submit">Entrar</button>
+
+</form>
+
+<a [routerLink]="['/registro']">Crear cuenta</a>
+=======
+<div class="vh-100 d-flex align-items-center">
+  <div class="card container w-50">
+    <div class="card-header text-center">
+      <h3>Formulario de inicio sesión</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="user" (ngSubmit)="ingresar()">
+        <div class="mb-3">
+          <label for="identidad" class="form-label">Identidad</label>
+          <input formControlName="identidad" type="text" class="form-control" id="identidad">
+          <div>
+            @if (user.get('identidad')?.invalid && user.get('identidad')?.touched) {
+              @if (user.get('identidad')?.errors?.['required']) {
+              <p class="text-danger">Identidad es obligatorio</p>
+              }@else if (user.get('identidad')?.errors?.['minlength']) {
+              <p class="text-danger">La identidad debe tener mínimo 10 caracteres</p>
+              }@else if (user.get('identidad')?.errors?.['maxlength']) {
+              <p class="text-danger">La identidad debe tener mínimo 10 caracteres</p>
+              }
+            }
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="contrsena">Contrseña</label>
+          <input formControlName="contrasena" type="password" class="form-control" id="contrsena">
+          <div>
+            @if (user.get('contrasena')?.invalid && user.get('contrasena')?.touched) {
+              @if (user.get('contrasena')?.errors?.['required']) {
+              <p class="text-danger">Identidad es obligatorio</p>
+              }@else if (user.get('contrasena')?.errors?.['minlength']) {
+              <p class="text-danger">La contraseña debe tener mínimo 7 caracteres</p>
+              }
+            }
+          </div>
+        </div>
+        <div class="d-flex justify-content-evenly">
+          <button [disabled]="user.invalid" type="submit" class="btn btn-primary">Iniciar sesión</button>
+          <a class="btn btn-outline-info" role="button" [routerLink]="['/registro']">No tengo cuenta</a>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer text-center">
+      <p>Ingenieria de software e industrial &copy;</p>
+    </div>
+  </div>
+</div>
+>>>>>>> 26a89ff (Se actualizo el desarrollo con bootstrap y SweetAlert2)

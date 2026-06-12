@@ -1,0 +1,42 @@
+<div class="usuarios-wrap">
+  <div class="topbar">
+    <h2>Usuarios</h2>
+    <!-- <span class="topbar-count">{{ (usuarios | filter:searchTerm).length }} usuarios</span> -->
+  </div>
+
+  <div class="search-wrap">
+    <!-- <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar usuario…" /> -->
+  </div>
+
+  <div class="cards-grid">
+    <div
+      class="usr-card"
+      *ngFor="let u of usuarios; let i = index"
+      [style.animation-delay]="i * 55 + 'ms'">
+
+      <div class="card-top">
+        <div class="avatar">{{ getInitials(u.nombre) }}</div>
+        <span class="role-badge" [ngClass]="u.rol | lowercase">{{ u.rol }}</span>
+      </div>
+
+      <p class="card-name">{{ u.nombre }}</p>
+      <span class="card-id"># {{ u.id }}</span>
+
+      <div class="divider"></div>
+
+      <div class="card-footer">
+        <button
+          *ngIf="vendedor.rol !== 'VENDEDOR'"
+          class="btn-edit"
+          (click)="editarRol(u.identidad)">
+          <i class="ti ti-edit" aria-hidden="true"></i> Editar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="usuarios.length === 0">
+    <i class="ti ti-user-off" aria-hidden="true"></i>
+    <p>No se encontraron usuarios</p>
+  </div>
+</div>

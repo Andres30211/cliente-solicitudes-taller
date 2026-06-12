@@ -1,0 +1,74 @@
+<div class="vh-100 d-flex align-items-center">
+  <div class="card container w-50">
+    <div class="card-header text-center">
+      <h3>Registro de Solicitudes</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="formulario" (ngSubmit)="guardar()">
+        <div class="mb-3">
+          <label for="nombreCliente" class="form-label">Nombre Cliente</label>
+          <input formControlName="nombreCliente" type="text" class="form-control" id="nombreCliente">
+          <div>
+            @if (formulario.get('nombreCliente')?.invalid && formulario.get('nombreCliente')?.touched) {
+              @if (formulario.get('nombreCliente')?.errors?.['required']) {
+              <p class="text-danger">Nombre del Cliente necesario</p>
+              }
+            }
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="nombreProducto">nombreProducto</label>
+          <input formControlName="nombreProducto" type="text" class="form-control" id="nombreProducto">
+          <div>
+            @if (formulario.get('nombreProducto')?.invalid && formulario.get('nombreProducto')?.touched) {
+              @if (formulario.get('nombreProducto')?.errors?.['required']) {
+              <p class="text-danger">Nombre del producto necesario</p>
+              }
+            }
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="cantidad">cantidad</label>
+          <input formControlName="cantidad" type="text" class="form-control" id="cantidad">
+          <div>
+            @if (formulario.get('cantidad')?.invalid && formulario.get('cantidad')?.touched) {
+              @if (formulario.get('cantidad')?.errors?.['required']) {
+              <p class="text-danger">La cantidad es necesaria</p>
+              }@else if (formulario.get('cantidad')?.errors?.['min']) {
+              <p class="text-danger">La cantidad debe de ser mayor</p>
+              }
+            }
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Orden compra PDF</label>
+          <input formControlName="ordenCompraPdf" type="file" class="form-control" (change)="onFileChange($event, 'orden')">
+          <div>
+            @if (formulario.get('ordenCompraPdf')?.invalid && formulario.get('ordenCompraPdf')?.touched) {
+              @if (formulario.get('ordenCompraPdf')?.errors?.['required']) {
+                <p class="text-danger">La orden de compra es necesaria</p>
+              }
+            }
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Plano PDF</label>
+          <input formControlName="planoPdf" type="file" class="form-control" (change)="onFileChange($event, 'plano')">
+          <div>
+            @if (formulario.get('planoPdf ')?.invalid && formulario.get('planoPdf')?.touched) {
+              @if (formulario.get('planoPdf')?.errors?.['required']) {
+                <p class="text-danger">El plano es necesario</p>
+              }
+            }
+          </div>
+        </div>
+        <div class="d-flex justify-content-evenly">
+          <button [disabled]="formulario.invalid" type="submit" class="btn btn-primary">Crear solicitud</button>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer text-center">
+      <p>Ingenieria de software e industrial &copy;</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<<<<<<< HEAD
+<h2>Registro</h2>
+
+<form (ngSubmit)="registrar()">
+
+  <input
+    type="text"
+    placeholder="Nombre"
+    [(ngModel)]="user.nombre"
+    name="username"
+  >
+
+  <input
+    type="text"
+    placeholder="Identidad"
+    [(ngModel)]="user.identidad"
+    name="email"
+  >
+
+  <input
+    type="password"
+    placeholder="Contraseña"
+    [(ngModel)]="user.contrasena"
+    name="password"
+  >
+
+  <button type="submit">Registrarse</button>
+
+</form>
+
+<a [routerLink]="['/login']">Ya tengo cuenta</a>
+=======
+<div class="vh-100 d-flex align-items-center">
+  <div class="card container w-50">
+    <div class="card-header text-center">
+      <h3>Formulario de registro</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="user" (ngSubmit)="registrar()">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input formControlName="nombre" type="text" class="form-control" id="nombre">
+          <div>
+            @if (user.get('nombre')?.invalid && user.get('nombre')?.touched) {
+            <p class="text-danger">Nombre es obligatorio</p>
+            }
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="identidad" class="form-label">Identidad</label>
+          <input formControlName="identidad" type="text" class="form-control" id="identidad">
+          <div>
+            @if (user.get('identidad')?.invalid && user.get('identidad')?.touched) {
+              @if (user.get('identidad')?.errors?.['required']) {
+              <p class="text-danger">Identidad es obligatorio</p>
+              }@else if (user.get('identidad')?.errors?.['minlength']) {
+              <p class="text-danger">La identidad debe tener mínimo 10 caracteres</p>
+              }@else if (user.get('identidad')?.errors?.['maxlength']) {
+              <p class="text-danger">La identidad debe tener mínimo 10 caracteres</p>
+              }
+            }
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="contrsena">Contrseña</label>
+          <input formControlName="contrasena" type="password" class="form-control" id="contrsena">
+          <div>
+            @if (user.get('contrasena')?.invalid && user.get('contrasena')?.touched) {
+              @if (user.get('contrasena')?.errors?.['required']) {
+              <p class="text-danger">Identidad es obligatorio</p>
+              }@else if (user.get('contrasena')?.errors?.['minlength']) {
+              <p class="text-danger">La contraseña debe tener mínimo 7 caracteres</p>
+              }
+            }
+          </div>
+        </div>
+        <div class="d-flex justify-content-evenly">
+          <button [disabled]="user.invalid" type="submit" class="btn btn-primary">Registrar</button>
+          <a class="btn btn-outline-info" role="button" [routerLink]="['/login']">Ya tengo cuenta</a>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer text-center">
+      <p>Ingenieria de software e industrial &copy;</p>
+    </div>
+  </div>
+</div>
+>>>>>>> 26a89ff (Se actualizo el desarrollo con bootstrap y SweetAlert2)
