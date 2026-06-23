@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, inject, PLATFORM_ID } from '@angular/core';
 import { ServicioSolicitud } from '../../servicios/servicio-solicitud';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-users',
@@ -47,7 +48,11 @@ export class ListUsers {
   public editarRol(identidad: string){
     this.serviceSoli.editarRol(identidad).subscribe({
       next: (res) => {
-        alert(`Se actualizo el rol de ${res.nombre}`);
+        Swal.fire({
+          icon: 'success',
+          title: 'Cambio de Rol',
+          text: `Se actualizo el rol de ${res.nombre}`
+        });
       },
       error: (err) =>{
         console.log(err);
