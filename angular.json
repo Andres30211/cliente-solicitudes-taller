@@ -24,7 +24,7 @@
                 "input": "src",
                 "output": "/"
               },
-              "src/favicon.ico",
+              "public/global.jpeg",
               "src/assets"
             ],
             "styles": [
