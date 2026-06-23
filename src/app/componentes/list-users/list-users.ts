@@ -58,6 +58,7 @@ export class ListUsers {
   cargarUsuarios(){
     this.serviceSoli.listarUsuarios().subscribe({
       next: (data:any[]) => {
+        console.log(data);
         const usuarioLogeado = localStorage.getItem('global_user_token');
         const identidadActual = usuarioLogeado ? JSON.parse(usuarioLogeado).identidad : null;
         this.usuarios = data.filter(u => u.identidad !== identidadActual);

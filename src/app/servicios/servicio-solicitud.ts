@@ -44,7 +44,7 @@ export class ServicioSolicitud {
   }
 
   public editarRol(identidad: string): Observable<any>{
-    return this.http.put(`${this.api}/privado/update/${identidad}`, {});
+    return this.http.put(`${this.apiUser}/privado/update/${identidad}`, {});
   }
 
   public listarUsuarios(): Observable<any> {
